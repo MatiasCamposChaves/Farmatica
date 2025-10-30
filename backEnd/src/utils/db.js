@@ -15,10 +15,10 @@ export async function getPool() {
   if (pool && pool.connected) return pool;
   try {
     pool = await sql.connect({ connectionString, driver: 'msnodesqlv8' });
-    console.log('✅ Conectado a SQL Server (Windows Auth, MATIAS\\SQLEXPRESS)');
+    console.log('Conectado a SQL Server');
     return pool;
   } catch (e) {
-    console.error('❌ Error conectando a SQL Server:\n', util.inspect(e, { depth: 6, colors: true }));
+    console.error('Error conectando a SQL Server:\n', util.inspect(e, { depth: 6, colors: true }));
     throw e;
   }
 }

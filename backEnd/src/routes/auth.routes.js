@@ -1,9 +1,9 @@
 import { Router } from 'express';
 const router = Router();
 
-// Usuarios “quemados”
+// Usuarios quemados
 const USERS = [
-  { email: 'admin@farmaticas.com', password: 'Admin123', name: 'Administrador', role: 'admin' },
+  { email: 'admin@farmaticas.com', password: 'Admin123', name: 'Matias', role: 'admin' },
   { email: 'user@farmaticas.com', password: 'User123', name: 'Cliente', role: 'user' }
 ];
 

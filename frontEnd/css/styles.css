@@ -1,13 +1,13 @@
 :root{
-  --bg:#0f172a;        /* slate-900 */
-  --card:#111827;      /* gray-900 */
-  --muted:#9ca3af;     /* gray-400 */
-  --text:#e5e7eb;      /* gray-200 */
-  --accent:#22d3ee;    /* cyan-400 */
-  --danger:#ef4444;    /* red-500 */
-  --ok:#10b981;        /* emerald-500 */
-  --warn:#f59e0b;      /* amber-500 */
-  --border:#1f2937;    /* gray-800 */
+  --bg:#0f172a;       
+  --card:#111827;      
+  --muted:#9ca3af;     
+  --text:#e5e7eb;      
+  --accent:#4052a0;    
+  --danger:#ef4444;    
+  --ok:#10b981;        
+  --warn:#f59e0b;     
+  --border:#1f2937;    
   --shadow: 0 6px 24px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2);
 }
 
@@ -23,8 +23,10 @@ body{
   background:var(--card); border:1px solid var(--border); border-radius:16px;
   box-shadow:var(--shadow); padding:24px;
 }
-.row{ display:flex; gap:16px; flex-wrap:wrap }
+.row{ display:flex; gap:20px; flex-wrap:wrap; padding: 15px; }
 .grow{ flex:1 }
+
+.contact{ text-align:center }
 
 h1,h2,h3{ margin:0 0 12px }
 h1{ font-size:28px }
@@ -36,7 +38,7 @@ p.muted, .muted{ color:var(--muted) }
   padding:10px 14px; border-radius:10px; cursor:pointer;
 }
 .btn:hover{ border-color:#374151 }
-.btn.primary{ background:var(--accent); color:#00171f; border:none }
+.btn.primary{ background:var(--accent); color:#00171f; border:none}
 .btn.danger { background:var(--danger); border:none; color:#fff }
 .btn.ok { background:var(--ok); border:none; color:#002b20 }
 
@@ -52,7 +54,7 @@ p.muted, .muted{ color:var(--muted) }
 }
 .nav{ display:flex; align-items:center; gap:12px; padding:14px 24px }
 .nav a{ color:var(--text); text-decoration:none; padding:8px 12px; border-radius:8px }
-.nav a.active, .nav a:hover{ background:#111827 }
+.nav a.active, .nav a:hover{ background:#4052a0 }
 
 .badge{
   padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid var(--border); background:#0b1222;
@@ -91,5 +93,5 @@ dialog::backdrop{ background:rgba(0,0,0,.6) }
 .grid .full{ grid-column:1/-1 }
 .hr{ border-top:1px solid var(--border); margin:12px 0 }
 
-.logo{ height:36px; vertical-align:middle }
+.logo{ height:70px; vertical-align:middle }
 .right{ margin-left:auto }
