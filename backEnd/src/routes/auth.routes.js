@@ -1,23 +1,17 @@
 import { Router } from 'express';
-import { ok, badRequest } from '../utils/http.js';
-
 const router = Router();
 
-// Usuarios quemados
+// Usuarios “quemados”
 const USERS = [
-  { email: 'admin@farmaticas.com', password: 'Admin123', role: 'admin', name: 'Admin' },
-  { email: 'user@farmaticas.com',  password: 'User123',  role: 'viewer', name: 'Usuario' }
+  { email: 'admin@farmaticas.com', password: 'Admin123', name: 'Administrador', role: 'admin' },
+  { email: 'user@farmaticas.com', password: 'User123', name: 'Cliente', role: 'user' }
 ];
 
 router.post('/login', (req, res) => {
-  const { email, password } = req.body || {};
-  if (!email || !password) return badRequest(res, 'Email y contraseña son requeridos');
-
+  const { email, password } = req.body;
   const user = USERS.find(u => u.email === email && u.password === password);
-  if (!user) return badRequest(res, 'Credenciales inválidas');
-
-  // En un futuro podés retornar un JWT. Por ahora devolvemos el perfil.
-  return ok(res, { email: user.email, role: user.role, name: user.name });
+  if (!user) return res.status(401).json({ ok: false, msg: 'Credenciales inválidas' });
+  res.json({ ok: true, data: { email: user.email, name: user.name, role: user.role } });
 });
 
 export default router;

@@ -1,16 +1,14 @@
 import { Router } from 'express';
-import { getPool } from '../db.js';
-import { ok, fail } from '../utils/http.js';
-
+import { getPool } from '../utils/db.js';
 const router = Router();
 
-router.get('/dashboard/resumen', async (_req, res) => {
+router.get('/resumen', async (req, res) => {
   try {
     const pool = await getPool();
-    const { recordset } = await pool.request().query('SELECT * FROM dbo.vwDashboardResumen;');
-    return ok(res, recordset[0] || {});
+    const result = await pool.request().query('SELECT * FROM vwDashboardResumen');
+    res.json({ ok: true, data: result.recordset[0] });
   } catch (err) {
-    return fail(res, err);
+    res.status(500).json({ ok: false, msg: err.message });
   }
 });
 

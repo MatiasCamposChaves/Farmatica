@@ -1,48 +1,21 @@
 import { Router } from 'express';
-import { getPool, sql } from '../db.js';
-import { ok, badRequest, fail } from '../utils/http.js';
-
+import { getPool, sql } from '../utils/db.js';
 const router = Router();
 
-/**
- * POST /api/ventas
- * body: {
- *   cliente_id: 1 | null,
- *   items: [{ medicamento_id: 1, cantidad: 2, precio_unitario: 350.00 }, ...]
- * }
- */
-router.post('/ventas', async (req, res) => {
+// Registrar venta usando SP
+router.post('/', async (req, res) => {
+  const { cliente_id, items } = req.body;
   try {
-    const { cliente_id = null, items } = req.body || {};
-    if (!Array.isArray(items) || items.length === 0) return badRequest(res, 'items es requerido');
-
     const pool = await getPool();
-
-    // Construir TVP dbo.TVP_DetalleVenta
-    const tvp = new sql.Table('TVP_DetalleVenta');
-    tvp.columns.add('medicamento_id', sql.Int, { nullable: false });
-    tvp.columns.add('cantidad', sql.Int, { nullable: false });
-    tvp.columns.add('precio_unitario', sql.Decimal(10, 2), { nullable: false });
-    for (const it of items) {
-      tvp.rows.add(Number(it.medicamento_id), Number(it.cantidad), Number(it.precio_unitario));
-    }
-
-    const request = pool.request();
-    request.input('cliente_id', sql.Int, cliente_id !== null ? Number(cliente_id) : null);
-    request.input('detalle', tvp);
-
-    const r = await request.execute('sp_registrar_venta');
-
-    // Después de ejecutar, devolvemos venta más reciente del cliente (simple)
-    const { recordset } = await pool.request().query(`
-      SELECT TOP 1 id, cliente_id, fecha, total
-      FROM dbo.ventas
-      ORDER BY id DESC;
-    `);
-
-    return ok(res, { venta: recordset[0] });
+    const tvp = new sql.Table();
+    tvp.columns.add('medicamento_id', sql.Int);
+    tvp.columns.add('cantidad', sql.Int);
+    tvp.columns.add('precio_unitario', sql.Decimal(10, 2));
+    items.forEach(i => tvp.rows.add(i.medicamento_id, i.cantidad, i.precio_unitario));
+    await pool.request().input('cliente_id', sql.Int, cliente_id).input('detalle', tvp).execute('sp_registrar_venta');
+    res.json({ ok: true, msg: 'Venta registrada correctamente' });
   } catch (err) {
-    return fail(res, err);
+    res.status(500).json({ ok: false, msg: err.message });
   }
 });
 
