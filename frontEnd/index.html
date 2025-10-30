@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Farmaticas · Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="container" style="max-width:420px; padding-top:12vh">
+    <div class="card">
+      <div style="text-align:center; margin-bottom:16px">
+        <img src="./assets/logo.svg" class="logo" alt="Farmaticas">
+        <h1>Farmaticas</h1>
+        <p class="muted">Accedé con tu correo y contraseña</p>
+      </div>
+
+      <form id="login-form" class="grid">
+        <div class="full">
+          <label class="label" for="email">Email</label>
+          <input id="email" type="email" class="input" placeholder="admin@farmaticas.com" required>
+        </div>
+        <div class="full">
+          <label class="label" for="password">Contraseña</label>
+          <input id="password" type="password" class="input" placeholder="••••••••" required>
+        </div>
+        <div class="full">
+          <button class="btn primary" type="submit" style="width:100%">Iniciar sesión</button>
+        </div>
+        <p class="muted full" style="margin-top:8px">
+          <strong>Admin:</strong> admin@farmaticas.com / Admin123<br>
+          <strong>Usuario:</strong> user@farmaticas.com / User123
+        </p>
+      </form>
+    </div>
+    <footer>© Farmaticas</footer>
+  </div>
+
+  <script type="module">
+    import { handleLogin } from './js/auth.js';
+    handleLogin();
+  </script>
+</body>
+</html>

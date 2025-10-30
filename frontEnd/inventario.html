@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Farmaticas · Inventario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <img src="./assets/logo.svg" class="logo" alt="logo">
+      <a href="info.html">Información</a>
+      <a href="inventario.html" data-active="inv">Inventario</a>
+    </nav>
+  </header>
+
+  <main class="container" style="padding-top:20px">
+    <section class="card">
+      <div class="row" style="align-items:center; margin-bottom:10px">
+        <h1 class="grow">Inventario</h1>
+        <div id="admin-tools" style="display:none">
+          <button id="btnNuevo" class="btn primary">Nuevo producto</button>
+        </div>
+      </div>
+
+      <div class="tools" style="margin-bottom:12px">
+        <div class="grow">
+          <input id="q" class="input" placeholder="Buscar por nombre o código...">
+        </div>
+        <div>
+          <select id="categoria" class="input">
+            <option value="">Todas las categorías</option>
+            <option>Analgesico</option>
+            <option>Antiinflamatorio</option>
+            <option>Antibiotico</option>
+            <option>Vitaminas</option>
+          </select>
+        </div>
+        <button id="btnBuscar" class="btn">Buscar</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Código</th><th>Nombre</th><th>Categoría</th>
+            <th>Precio</th><th>Stock</th><th>Vence</th><th style="width:160px">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>© Farmaticas</footer>
+
+  <!-- Modal -->
+  <dialog id="dlg">
+    <div class="dialog-head">
+      <h3 id="dlgTitle">Nuevo producto</h3>
+      <button class="btn" id="dlgClose">✕</button>
+    </div>
+    <form id="frm" class="dialog-body">
+      <div class="grid">
+        <div>
+          <label class="label">Código</label>
+          <input class="input" name="codigo" required>
+        </div>
+        <div>
+          <label class="label">Nombre</label>
+          <input class="input" name="nombre" required>
+        </div>
+        <div>
+          <label class="label">Categoría</label>
+          <input class="input" name="categoria" placeholder="Analgesico / Antiinflamatorio ...">
+        </div>
+        <div>
+          <label class="label">Precio unitario</label>
+          <input class="input" name="precio_unitario" type="number" min="0" step="0.01" required>
+        </div>
+        <div>
+          <label class="label">Stock</label>
+          <input class="input" name="stock_actual" type="number" min="0" step="1" required>
+        </div>
+        <div>
+          <label class="label">Fecha vencimiento</label>
+          <input class="input" name="fecha_vencimiento" type="date">
+        </div>
+        <div class="full">
+          <label class="label">Proveedor</label>
+          <input class="input" name="proveedor">
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div style="display:flex; gap:8px; justify-content:flex-end">
+        <button type="button" class="btn" id="cancelar">Cancelar</button>
+        <button class="btn ok" type="submit">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./js/inventario.js"></script>
+</body>
+</html>

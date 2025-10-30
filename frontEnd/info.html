@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Farmaticas · Información</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <img src="./assets/logo.svg" class="logo" alt="logo">
+      <a href="info.html" data-active="info">Información</a>
+      <a href="inventario.html">Inventario</a>
+    </nav>
+  </header>
+
+  <main class="container" style="padding-top:20px">
+    <section class="card">
+      <h1>Farmaticas</h1>
+      <p class="muted">Cadena de farmacias enfocada en servicio humano y disponibilidad de inventario.</p>
+      <div class="row">
+        <div class="grow card">
+          <h3>Misión</h3>
+          <p>Brindar acceso rápido y seguro a medicamentos de calidad, con inventario actualizado y servicio al cliente.</p>
+        </div>
+        <div class="grow card">
+          <h3>Horarios</h3>
+          <p>Lunes a Domingo · 7:00 am – 10:00 pm</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="grow card">
+          <h3>Contacto</h3>
+          <p>Tel: 2222-0000 · correo@farmaticas.com</p>
+        </div>
+        <div class="grow card">
+          <h3>Accesos</h3>
+          <a href="inventario.html" class="btn primary">Ir al inventario</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Farmaticas</footer>
+
+  <script type="module">
+    import { requireAuth, mountHeaderActive } from './js/auth.js';
+    requireAuth();
+    mountHeaderActive('info');
+  </script>
+</body>
+</html>
